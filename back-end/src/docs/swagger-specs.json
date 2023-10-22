@@ -1,0 +1,289 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is an API created by ISM Softwares LTDA using Express.js and documented with Swagger",
+    "version": "1.0.0",
+    "title": "Barber Shop Backend",
+    "contact": {
+      "email": ""
+    }
+  },
+  "host": "localhost:3000",
+  "basePath": "",
+  "tags": [
+    {
+      "name": "auth",
+      "description": "The authentication endpoints"
+    },
+    {
+      "name": "users",
+      "description": "The users endpoints"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/auth/login": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Authenticates a user",
+        "description": "Authenticates a user with their credentials and returns a JWT and refresh token",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "The user name for login",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "The password for login in clear text",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "accessToken": {
+                  "type": "string"
+                },
+                "expiresIn": {
+                  "type": "string"
+                },
+                "refreshToken": {
+                  "type": "string"
+                },
+                "userId": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid username/password",
+            "schema": {
+              "$ref": "#/definitions/ClientErrorResponses"
+            }
+          },
+          "500": {
+            "description": "Server internal error"
+          }
+        }
+      }
+    },
+    "/auth/token/refresh": {
+      "get": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Get a new access token",
+        "description": "This endpoint generates a new access token based on the provided refresh token",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "The user id that owns the refresh token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "refreshToken",
+            "in": "query",
+            "description": "A valid refresh token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "refreshTokenValidity",
+            "in": "query",
+            "description": "The validity of refresh token",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "accessToken": {
+                  "type": "string"
+                },
+                "expiresIn": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ClientErrorResponses"
+            }
+          },
+          "500": {
+            "description": "Server internal error"
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get user information by id",
+        "description": "This endpoint gets user information by the provided id",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "description": "The user id",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ClientErrorResponses"
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "schema": {
+              "$ref": "#/definitions/ClientErrorResponses"
+            }
+          },
+          "500": {
+            "description": "Server internal error"
+          }
+        }
+      }
+    },
+    "/users/bytoken": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Get user information by id",
+        "description": "This endpoint gets user information by the provided id",
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "username": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ClientErrorResponses"
+            }
+          },
+          "404": {
+            "description": "User not found",
+            "schema": {
+              "$ref": "#/definitions/ClientErrorResponses"
+            }
+          },
+          "500": {
+            "description": "Server internal error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ClientErrorResponses": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "scheme": "bearer",
+      "description": "Enter the token, e.g. \"Bearer abcde12345\"."
+    }
+  }
+}

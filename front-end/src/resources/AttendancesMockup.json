@@ -1,0 +1,50 @@
+[
+  {
+    "startTime": "07:00",
+    "estimatedTime": 60,
+    "date": "19/02/2023",
+    "customer": "Alvo Dumbledore de Hogwarts",
+    "phoneNumber": "(88) 99498-7473",
+    "barber": "Leonardo Lima de Oliveira"
+  },
+  {
+    "startTime": "09:00",
+    "estimatedTime": 45,
+    "date": "19/02/2023",
+    "customer": "Otávio Mário Ryan Baptista",
+    "phoneNumber": "(96) 98651-5956",
+    "barber": "Leonardo Lima de Oliveira"
+  },
+  {
+    "startTime": "10:00",
+    "estimatedTime": 60,
+    "date": "19/02/2023",
+    "customer": "Caio Manoel Julio Figueiredo",
+    "phoneNumber": "(49) 99216-8269",
+    "barber": "Leonardo Lima de Oliveira"
+  },
+  {
+    "startTime": "15:00",
+    "estimatedTime": 45,
+    "date": "19/02/2023",
+    "customer": "Rodrigo Luan Ricardo Pereira",
+    "phoneNumber": "(21) 99828-9367",
+    "barber": "Leonardo Lima de Oliveira"
+  },
+  {
+    "startTime": "15:45",
+    "estimatedTime": 60,
+    "date": "19/02/2023",
+    "customer": "Lucas André da Cruz",
+    "phoneNumber": "(98) 98838-3097",
+    "barber": "Leonardo Lima de Oliveira"
+  },
+  {
+    "startTime": "16:45",
+    "estimatedTime": 60,
+    "date": "19/02/2023",
+    "customer": "Caleb Rafael da Cunha",
+    "phoneNumber": "(21) 98781-5832",
+    "barber": "Leonardo Lima de Oliveira"
+  }
+]
