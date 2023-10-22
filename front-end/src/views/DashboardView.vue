@@ -161,11 +161,14 @@ export default {
 
 <style lang="scss" scoped>
 .dashboard-container {
+  height: 100vh;
   .dashboard-content {
     width: 100%;
+    overflow: auto;
     .dashboard-body {
       margin-top: -80px;
       padding: 0 64px;
+      padding-bottom: 32px;
       justify-content: space-between;
       .dashboard-main-card {
         background: $white;

@@ -130,8 +130,10 @@ export default {
 
 <style lang="scss" scoped>
 .agenda-container {
+  height: 100vh;
   .agenda-content {
     width: 100%;
+    overflow: auto;
     .agenda-body {
       padding: 32px 64px;
       .agenda-body-title {
