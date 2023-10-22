@@ -19,10 +19,15 @@ export default {
     const password: string = req.query.password as string;
     let refreshTokenValidity = Number(req.query.refreshTokenValidity);
 
+    if (!username || !password) {
+      const message = 'You must inform usaname and password';
+      logger.info(message);
+      return res.status(400).send({ message });
+    }
+
     if (refreshTokenValidity !== 1 && refreshTokenValidity !== 7) {
       refreshTokenValidity = 1;
     }
-
     prisma.users.findUnique({
       select: { user_id: true, username: true, password: true },
       where: { username }
@@ -33,7 +38,7 @@ export default {
         return res.status(400).send({ message });
       }
 
-      const verifyPasswordResult = await DB.funcExec('verify_password', [password, username]);
+      const verifyPasswordResult = await DB.execFunction('verify_password', [password, username]);
       const password_matched = verifyPasswordResult[0].verify_password;
 
       if (password_matched) {

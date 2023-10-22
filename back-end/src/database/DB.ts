@@ -5,10 +5,10 @@ const pgp = pgpromise({  });
 const db = pgp(connection);
 
 export default {
-  async procExec(procName: string, params: Array<unknown>) {
+  async execProcedure(procName: string, params: Array<unknown>) {
     return await db.proc(procName, params);
   },
-  async funcExec(funcName: string, params: Array<unknown>) {
+  async execFunction(funcName: string, params: Array<unknown>) {
     return await db.func(funcName, params);
   }
 };

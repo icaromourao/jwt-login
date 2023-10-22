@@ -12,7 +12,7 @@ const app = express();
 const corsOptions = {
   origin: 'http://localhost:8080'
 };
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT ?? 3000;
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());

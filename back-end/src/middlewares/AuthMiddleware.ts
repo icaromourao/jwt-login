@@ -22,7 +22,7 @@ export default {
         ) as JwtPayload;
         const storedToken = await prisma.tokens.findUnique({ where: { token: jwtToken } });
 
-        if (!storedToken || !storedToken.is_valid) {
+        if (!storedToken?.is_valid) {
           res.status(401).send({ message: 'Unauthorized' });
         }
 
